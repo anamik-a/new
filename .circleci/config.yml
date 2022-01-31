@@ -1,0 +1,19 @@
+version:2
+jobs:
+    docker:
+      - image: cimg/base:stable
+
+    steps:
+      - checkout
+      - run: sudo docker build -t ana .
+      - run: sudo docker tag ana:latest ana:v1
+      - run: sudo docker push ana12334/dockerimage: ana:v1
+          
+        
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello
